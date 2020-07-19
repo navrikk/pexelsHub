@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget appNameWidget() {
+Widget appLogo() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[

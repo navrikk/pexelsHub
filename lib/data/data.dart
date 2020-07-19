@@ -1,4 +1,6 @@
-import 'package:pexelsHub/model/categories.dart';
+import 'package:pexelsHub/models/category.dart';
+  
+String apiKey = '';
 
 List<Category> getCategories() {
   List<Category> categories = new List();
