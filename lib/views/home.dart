@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
 
   getCuratedWallpapers() async {
     var response = await http.get(
-      'https://api.pexels.com/v1/curated?per_page=15&page=1',
+      'https://api.pexels.com/v1/curated?per_page=16&page=1',
       headers: {
         'Authorization': apiKey
       }
