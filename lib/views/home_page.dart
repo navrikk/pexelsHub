@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:pexelsHub/data/data.dart';
 import 'package:pexelsHub/models/category.dart';
 import 'package:pexelsHub/models/wallpaper.dart';
-import 'package:pexelsHub/views/search.dart';
+import 'package:pexelsHub/views/search_page.dart';
 import 'package:pexelsHub/widgets/app_logo.dart';
 import 'package:http/http.dart' as http;
 import 'package:pexelsHub/widgets/wallpapers_list.dart';
+import 'package:pexelsHub/views/category_page.dart';
 
-class Home extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
   List<Category> categories = new List();
   List<Wallpaper> wallpapers = new List();
   TextEditingController searchTextController = new TextEditingController();
@@ -77,7 +78,7 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Search(
+                            builder: (context) => SearchPage(
                               query: searchTextController.text,
                             ),
                           ),
@@ -132,37 +133,49 @@ class CategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 4),
-      child: Stack(
-        children: <Widget>[
-          ClipRRect(
-            child: Image.network(
-              imageUrl,
-              height: 50,
-              width: 100,
-              fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context, 
+          MaterialPageRoute(
+            builder: (context) => CategoryPage(
+              categoryName: title.toLowerCase(),
             ),
-            borderRadius: BorderRadius.circular(8),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.black26,
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: 4),
+        child: Stack(
+          children: <Widget>[
+            ClipRRect(
+              child: Image.network(
+                imageUrl,
+                height: 50,
+                width: 100,
+                fit: BoxFit.cover,
+              ),
               borderRadius: BorderRadius.circular(8),
             ),
-            height: 50,
-            width: 100,
-            alignment: Alignment.center,
-            child: Text(
-              title, 
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: 16,
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.black26,
+                borderRadius: BorderRadius.circular(8),
               ),
-            ),
-          )
-        ],
+              height: 50,
+              width: 100,
+              alignment: Alignment.center,
+              child: Text(
+                title, 
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

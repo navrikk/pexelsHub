@@ -7,18 +7,17 @@ import 'package:pexelsHub/widgets/app_logo.dart';
 import 'package:http/http.dart' as http;
 import 'package:pexelsHub/widgets/wallpapers_list.dart';
 
-class Search extends StatefulWidget {
-
+class SearchPage extends StatefulWidget {
   final String query;
-  Search({
+  SearchPage({
     this.query,
   });
 
   @override
-  _SearchState createState() => _SearchState();
+  _SearchPageState createState() => _SearchPageState();
 }
 
-class _SearchState extends State<Search> {
+class _SearchPageState extends State<SearchPage> {
   TextEditingController searchTextController = new TextEditingController();
   List<Wallpaper> wallpapers = new List();
 
