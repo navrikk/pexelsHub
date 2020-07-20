@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pexelsHub/data/data.dart';
 import 'package:pexelsHub/models/category.dart';
 import 'package:pexelsHub/models/wallpaper.dart';
+import 'package:pexelsHub/views/search.dart';
 import 'package:pexelsHub/widgets/app_logo.dart';
 import 'package:http/http.dart' as http;
 import 'package:pexelsHub/widgets/wallpapers_list.dart';
@@ -16,6 +17,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Category> categories = new List();
   List<Wallpaper> wallpapers = new List();
+  TextEditingController searchTextController = new TextEditingController();
 
   getCuratedWallpapers() async {
     var response = await http.get(
@@ -63,13 +65,28 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     Expanded(
                       child: TextField(
+                        controller: searchTextController,
                         decoration: InputDecoration(
                           hintText: 'search wallpapers',
                           border: InputBorder.none,
                         ),
                       ),
                     ),
-                    Icon(Icons.search),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Search(
+                              query: searchTextController.text,
+                            ),
+                          ),
+                        );  
+                      },
+                      child: Container(
+                        child: Icon(Icons.search),
+                      ),
+                    )
                   ],
                 ),
               ),
