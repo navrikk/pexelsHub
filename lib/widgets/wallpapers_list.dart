@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pexelsHub/models/wallpaper.dart';
+import 'package:pexelsHub/views/view_image_page.dart';
 
 Widget wallpapersList({List<Wallpaper> wallpapers, context}) {
   return Container(
@@ -13,14 +14,29 @@ Widget wallpapersList({List<Wallpaper> wallpapers, context}) {
       crossAxisSpacing: 6.0,
       children: wallpapers.map((wallpaper) {
         return GridTile(
-          child: Container(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                wallpaper.source.portrait,
-                fit: BoxFit.cover,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ViewImagePage(
+                    imageUrl: wallpaper.source.portrait,
+                  ),
+                ),
+              );
+            },
+            child: Hero(
+              tag: wallpaper.source.portrait,
+              child: Container(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.network(
+                    wallpaper.source.portrait,
+                    fit: BoxFit.cover,
+                  ),
+                )
               ),
-            )
+            ),
           ),
         );
       }).toList(),
