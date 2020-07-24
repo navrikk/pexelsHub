@@ -55,37 +55,6 @@ class _SearchPageState extends State<SearchPage> {
         child: Container(
           child: Column(
             children: <Widget>[
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0xfff5f8fd),
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                margin: EdgeInsets.symmetric(horizontal: 24),
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: TextField(
-                        controller: searchTextController,
-                        decoration: InputDecoration(
-                          hintText: 'search wallpapers',
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        getSearchedWallpapers(
-                          searchTextController.text,
-                        );
-                      },
-                      child: Container(
-                        child: Icon(Icons.search),
-                      ),
-                    )
-                  ],
-                ),
-              ),
               SizedBox(height: 16),
               wallpapersList(
                 wallpapers: wallpapers,
