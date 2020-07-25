@@ -107,6 +107,19 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "Images provided by pexels.com",
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontSize: 12,
+                      fontFamily: 'Overpass',
+                    ),
+                  )
+                ],
+              ),
               SizedBox(height: 16),
               wallpapersList(
                 wallpapers: wallpapers,
